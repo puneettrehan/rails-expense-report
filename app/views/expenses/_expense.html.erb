@@ -1,0 +1,32 @@
+<tr>
+  <td>
+    <h5 class="label-4"><%= I18n.localize(expense.date, :format => "%d-%I-%Y") if expense.date %></h5>
+  </td>
+  <td>
+    <h5 class="label-4"><%= truncate(expense.expense_type.name, :length => 20) %></h5>
+  </td>
+  <td class="fixed-width">
+    <h5 class="label-4">
+      <%= truncate(expense.description, :length => 50) %>
+      <% if expense.attachment? %>
+          <%= link_to image_tag(asset_path('clip-b.png'), :class => 'clip-b-img flt-right'), expense.attachment.url, :target => "_blank" %>
+      <% end %>
+    </h5>
+  </td>
+  <td>
+    <h5 class="label-4">
+      <i class="alt-a label-5 <%= get_status_class(expense) %>">
+        <img class="<%= get_status_image(expense) %>-img" src='<%= asset_path "#{get_status_image(expense)}.png" %>'>
+        <%= expense.status %>
+      </i>
+
+      <i class="alt-b label-6">
+        <img class="<%= get_status_image(expense) %>-img" src='<%= asset_path "#{get_status_image(expense)}.png" %>'> <%= expense.status %>
+        <%= link_to(edit_expense_path(expense), :class => "bg-edit-b") do %>
+            <img class="clip-b-img" src="<%= asset_path 'edit-a.png' %>">
+        <% end %>
+        <%= link_to get_cross_image.html_safe, expense_path(expense), :class => "bg-cross-b", :confirm => "Are you sure want to delete?" , :method =>:delete %>
+      </i>
+    </h5>
+  </td>
+</tr>

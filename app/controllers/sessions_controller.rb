@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:username], params[:password], params[:remember_me])
     if user
-      redirect_back_or_to user, :notice => "Logged in!"
+      redirect_back_or_to expenses_path(), :notice => "Logged in!"
     else
       @error_message = "Invalid Username or Password."
       render 'new'

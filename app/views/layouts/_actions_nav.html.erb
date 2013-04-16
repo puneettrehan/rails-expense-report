@@ -1,0 +1,10 @@
+<div id="nav">
+  <ul>
+    <li class="<%= params[:action].eql?('index') ? 'selected' : '' %>">
+      <%= link_to "My Expenses", expenses_path %>
+    </li>
+    <li class="<%= ['index', 'approvals'].include?(params[:action]) ? '' : 'selected' %>">
+      <%= link_to "New Expense", new_expense_path %>
+    </li>
+  </ul>
+</div>

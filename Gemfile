@@ -8,7 +8,10 @@ gem 'rails', '3.2.13'
 
 gem "mongoid", "~>2.4"
 gem 'bson_ext'
+#gem 'jquery-rails'
+gem  'cloudfoundry-jquery-rails'
 gem 'sorcery'
+gem 'carrierwave-mongoid'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,8 +25,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-#gem 'jquery-rails'
-gem  'cloudfoundry-jquery-rails'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
