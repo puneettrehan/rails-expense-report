@@ -18,5 +18,5 @@ class Expense
   belongs_to :expense_type
   belongs_to :user
 
-  scope :pending, where(:status => EXPENSE_STATUS[0])
+  scope :pending, where(status: EXPENSE_STATUS[0])
 end

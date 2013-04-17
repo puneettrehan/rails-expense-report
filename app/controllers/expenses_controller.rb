@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login  , :get_pending_expenses
+  before_filter :check_admin_access, :only =>[:approvals, :update_status]
 
   def new
     @expense = current_user.expenses.build
@@ -15,7 +16,7 @@ class ExpensesController < ApplicationController
   end
 
   def index
-    @expenses = current_user.expenses.includes(:expense_type)
+    @expenses = current_user.expenses.includes(:expense_type).page(params[:page]).per(10)
   end
 
   def edit
@@ -37,4 +38,21 @@ class ExpensesController < ApplicationController
     expense.destroy
     redirect_to :back
   end
+
+  def approvals
+    @expenses = Kaminari.paginate_array(Expense.pending.includes(:expense_type)).page(params[:page]).per(10)
+    render "index"
+  end
+
+  def update_status
+    @expense = Expense.find(params[:id])
+    @expense.update_attribute(:status, params[:status])
+    redirect_to :back
+  end
+
+  protected
+
+   def get_pending_expenses
+     @pending_expenses = Expense.pending if current_user.is_admin?
+   end
 end

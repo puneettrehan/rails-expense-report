@@ -12,6 +12,7 @@ gem 'bson_ext'
 gem  'cloudfoundry-jquery-rails'
 gem 'sorcery'
 gem 'carrierwave-mongoid'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.

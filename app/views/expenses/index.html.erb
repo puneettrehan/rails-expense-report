@@ -10,12 +10,22 @@
     <td class="td-c">
       <h5 class="label-3">Description</h5>
     </td>
+    <% if params[:action].eql?("approvals") %>
+        <td>
+          <h5 class="label-3">Created By</h5>
+        </td>
+    <% end %>
     <td  class="td-d">
       <h5 class="label-3">Status</h5>
     </td>
   </tr>
   </thead>
   <tbody>
-  <%= render @expenses %>
+  <div>
+    <%= render @expenses %>
+  </div>
   </tbody>
 </table>
+<div class="pagination pagination-1">
+  <%= paginate @expenses %>
+</div>

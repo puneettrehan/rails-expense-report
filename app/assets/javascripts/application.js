@@ -19,4 +19,9 @@ $(document).ready(function(){
         dateFormat: 'dd/mm/yy',
         maxDate: +0
     });
-});
+
+    $('.arrow-down-actions').live('click', function(e) {
+        $('.admin-actions :not($(this).siblings("ul.admin-actions"))').hide();
+        $(this).siblings('ul').toggle();
+    });
+})

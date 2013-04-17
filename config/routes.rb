@@ -6,7 +6,15 @@ RailsExpenseReportMongo::Application.routes.draw do
 
   resources :users
   resources :sessions
-  resources :expenses
+
+  resources :expenses do
+    member do
+      put :update_status
+    end
+    collection do
+      get :approvals
+    end
+  end
 
   root :to => "sessions#new"
 
